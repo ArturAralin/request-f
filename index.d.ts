@@ -10,32 +10,29 @@ import {
 
 declare module "request-f" {
   type Options = RequiredUriUrl & CoreOptions;
-  export interface requestF {
-    get(uri: string): Future<any, Request>;
-    get(o: Options): Future<any, Request>;
+    export function get(uri: string): Future<any, Request>;
+    export function get(o: Options): Future<any, Request>;
 
-    post(uri: string): Future<any, Request>;
-    post(o: Options): Future<any, Request>;
+    export function post(uri: string): Future<any, Request>;
+    export function post(o: Options): Future<any, Request>;
 
-    head(uri: string): Future<any, Request>;
-    head(o: Options): Future<any, Request>;
+    export function head(uri: string): Future<any, Request>;
+    export function head(o: Options): Future<any, Request>;
 
-    options(uri: string): Future<any, Request>;
-    options(o: Options): Future<any, Request>;
+    export function options(uri: string): Future<any, Request>;
+    export function options(o: Options): Future<any, Request>;
 
-    put(uri: string): Future<any, Request>;
-    put(o: Options): Future<any, Request>;
+    export function put(uri: string): Future<any, Request>;
+    export function put(o: Options): Future<any, Request>;
 
-    patch(uri: string): Future<any, Request>;
-    patch(o: Options): Future<any, Request>;
+    export function patch(uri: string): Future<any, Request>;
+    export function patch(o: Options): Future<any, Request>;
 
-    del(uri: string): Future<any, Request>;
-    del(o: Options): Future<any, Request>;
+    export function del(uri: string): Future<any, Request>;
+    export function del(o: Options): Future<any, Request>;
 
-    delete(uri: string): Future<any, Request>;
-    delete(o: Options): Future<any, Request>;
-  }
+    export function delete(uri: string): Future<any, Request>;
+    export function delete(o: Options): Future<any, Request>;
 
   export const requestOrig: RequestAPI;
-  export default requestF;
 }

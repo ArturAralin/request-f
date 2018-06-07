@@ -35,7 +35,6 @@ methods.forEach((methodName) => {
 });
 
 module.exports = Object.assign({
-  default: requestF,
   requestF,
   requestOrig,
 }, requestF);
