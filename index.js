@@ -22,7 +22,7 @@ const methodWrapper = (ctx, fn) =>
           return;
         }
 
-        resolve(response);
+        resolve(response.body);
       });
     });
 

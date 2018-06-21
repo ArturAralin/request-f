@@ -1,6 +1,6 @@
 {
   "name": "request-f",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Futured promise library",
   "main": "index.js",
   "scripts": {
@@ -24,13 +24,13 @@
     "url": "https://github.com/ArturAralin/request-f/issues"
   },
   "homepage": "https://github.com/ArturAralin/request-f#readme",
-  "dependencies": {
-    "fluture": "^8.0.2",
-    "request": "^2.85.0"
-  },
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0"
+  },
+  "peerDependencies": {
+    "fluture": "^8.0.2",
+    "request": "^2.85.0"
   }
 }
