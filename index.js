@@ -18,10 +18,13 @@ const methods = [
 
 const methodWrapper = (ctx, fn) =>
   arg =>
-    new Promise((resolve, reject) => {
+    new Promise((resolve) => {
       fn.call(ctx, arg, (err, response) => {
         if (err) {
-          reject(S.Left(JSON.stringify(err)));
+          resolve(S.Left({
+            text: err.toString(),
+            json: JSON.stringify(err),
+          }));
 
           return;
         }

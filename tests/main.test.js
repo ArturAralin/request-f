@@ -3,6 +3,7 @@ chai.use(require('chai-as-promised'));
 const randomInt = require('random-int');
 const S = require('sanctuary');
 const requestF = require('../index');
+const Future = require('fluture');
 const {
   server,
   host,
@@ -85,10 +86,29 @@ describe('requestF tests', () => {
     let error;
 
     before(() => {
-      error = requestF.get('invalid.host').promise().catch(err => err);
+      error = requestF.get('invalid.host').promise();
     });
 
     it('shoul be a Left', async () =>
       expect(S.isLeft(await error)).to.be.true);
+  });
+
+  describe('case with Future.parallel', () => {
+    let result;
+
+    before(async () => {
+      const r1 = requestF.get('invalid.host');
+      const r2 = requestF.get(host);
+      result = await Future.parallel(Infinity, [r1, r2]).promise();
+    });
+
+
+    it('first shoul be Left', () =>
+      expect(S.isLeft(result[0]))
+        .to.be.true);
+
+    it('first shoul be Right', () =>
+      expect(S.isRight(result[1]))
+        .to.be.true);
   });
 });
