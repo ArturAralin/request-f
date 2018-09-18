@@ -1,5 +1,9 @@
 const requestOrig = require('request');
 const Future = require('fluture');
+const { create, env } = require('sanctuary');
+const { env: flutureEnv } = require('fluture-sanctuary-types');
+
+const S = create({ checkTypes: true, env: env.concat(flutureEnv) });
 
 const methods = [
   'get',
@@ -17,12 +21,12 @@ const methodWrapper = (ctx, fn) =>
     new Promise((resolve, reject) => {
       fn.call(ctx, arg, (err, response) => {
         if (err) {
-          reject(err);
+          reject(S.Left(JSON.stringify(err)));
 
           return;
         }
 
-        resolve(response.body);
+        resolve(S.Right(response.toJSON()));
       });
     });
 
