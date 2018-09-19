@@ -21,10 +21,7 @@ const methodWrapper = (ctx, fn) =>
     new Promise((resolve) => {
       fn.call(ctx, arg, (err, response) => {
         if (err) {
-          resolve(S.Left({
-            text: err.toString(),
-            json: JSON.stringify(err),
-          }));
+          resolve(S.Left(err));
 
           return;
         }

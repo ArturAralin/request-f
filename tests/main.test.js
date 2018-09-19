@@ -85,12 +85,17 @@ describe('requestF tests', () => {
   describe('failing query', () => {
     let error;
 
-    before(() => {
-      error = requestF.get('invalid.host').promise();
+    before(async () => {
+      error = await requestF.get('invalid.host').promise();
     });
 
-    it('shoul be a Left', async () =>
-      expect(S.isLeft(await error)).to.be.true);
+    it('shoul be a Left', () =>
+      expect(S.isLeft(error)).to.be.true);
+
+    it('value shoul be instance of Error', () =>
+      expect(error)
+        .to.have.property('value')
+        .that.to.be.instanceOf(Error));
   });
 
   describe('case with Future.parallel', () => {
@@ -101,7 +106,6 @@ describe('requestF tests', () => {
       const r2 = requestF.get(host);
       result = await Future.parallel(Infinity, [r1, r2]).promise();
     });
-
 
     it('first shoul be Left', () =>
       expect(S.isLeft(result[0]))
