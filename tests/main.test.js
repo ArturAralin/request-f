@@ -39,7 +39,9 @@ describe('requestF tests', () => {
       const index = randomInt(0, 7);
       const methodName = METHODS[index];
 
-      result = await requestF[methodName](host).promise();
+      result = await requestF[methodName](host)
+        .map(S.map(r => r.toJSON()))
+        .promise();
     });
 
     it('result should be a Right', () =>

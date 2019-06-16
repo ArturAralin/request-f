@@ -26,7 +26,7 @@ const methodWrapper = (ctx, fn) =>
           return;
         }
 
-        resolve(S.Right(response.toJSON()));
+        resolve(S.Right(response));
       });
     });
 
